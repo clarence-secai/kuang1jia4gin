@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台发来结构体方法</title>
+</head>
+<body>
+显示的调用str函数结果是：
+{{.Str}}
+<br/>
+<!--下面两个都不会正常运行显示，-->
+{{call .Two "jack"}}
+{{.Two}}
+</body>
+</html>
+<!--
+显示的调用str函数结果是： soccer has 22 like it
+-->

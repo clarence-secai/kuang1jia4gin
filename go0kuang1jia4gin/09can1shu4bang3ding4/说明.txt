@@ -1,0 +1,53 @@
+query查询参数、uri路径Param参数、form表单参数、json参数  的绑定
+---------------------------------------------------------
+根据gin框架在Github上的官方说明【https://github.com/gin-gonic/gin】：
+参数绑定的系列方法有两类，
+第一类是Must类：
+    Bind(obj interface{}) error//todo:根据请求头的Content-type来推断数据格式后进行绑定,如无Content-type可能绑定失败
+    BindJSON(obj interface{}) error     //todo:只对前端传来的json格式的数据进行绑定
+    BindXML(obj interface{}) error      //只对前端传来的XML格式的数据进行绑定
+    BindQuery(obj interface{}) error    //todo:只对前端传来的url上的Query查询参数进行绑定
+    BindYAML(obj interface{}) error     //只对前端传来的YAML格式的数据进行绑定
+    BindHeader(obj interface{}) error   //只对前端传来的Header格式的数据进行绑定
+    BindUri(obj interface{}) error      //todo:只对前端传来的Uri路径param参数进行绑定
+    MustBindWith(obj interface{}, b binding.Binding) error
+上述绑定方法，在本质上都是用的MustBindWith
+
+第二类是Should类：
+    ShouldBind(obj interface{}) error//todo:根据请求头的Content-type来推断数据格式后进行绑定,如无Content-type可能绑定失败
+    ShouldBindJSON(obj interface{}) error   //todo:只对前端传来的json格式的数据进行绑定
+    ShouldBindXML(obj interface{}) error    //只对前端传来的XML格式的数据进行绑定
+    ShouldBindQuery(obj interface{}) error  //todo:只对前端传来的url上的Query查询参数进行绑定
+    ShouldBindYAML(obj interface{}) error   //只对前端传来的YAML格式的数据进行绑定
+    ShouldBindHeader(obj interface{}) error //只对前端传来的Header格式的数据进行绑定
+    ShouldBindUri(obj interface{}) error    //todo:只对前端传来的Uri路径param参数进行绑定
+    ShouldBindWith(obj interface{}, b binding.Binding) error
+    ShouldBindBodyWith(obj interface{}, bb binding.BindingBody) (err error)
+上述绑定方法，在本质上都是用的ShouldBindWith
+
+两类方法的区别是：第一类如果绑定失败，返回的err是gin已定好的，即the request is aborted with
+               c.AbortWithError(400, err).SetType(ErrorTypeBind). This sets the
+               response status code to 400 and the Content-Type header is set to
+               text/plain; charset=utf-8.
+               第二类如果绑定失败，返回err，而响应码和响应体类型程序员需自定义。
+todo:
+ 两类方法下的各个方法，各自适用于前端发来的不同格式的数据，前端发来各自类型数据的键值对后，后端绑定时借助tag标签
+ 进行映射———即将前端发来的键值对的键跟相应类型的tag标签比对，二者一致时，则将前端发来的键值对的值赋给该tag所对应
+ 的结构体字段，依次类推完成绑定。故前端发来uri数据，则绑定需要uri标签；前端发来json数据，则绑定需json标签[也可以
+ 无json标签，但需前端键值对的键和后端结构体字段不区分大小写的相同]；前端发来query数据，则绑定需form标签[也可以
+ 无form标签，但需前端键值对的键和后端结构体字段相同，大小写也需一致]；前端发来表单数据，则绑定需form标签。
+
+todo:由于通过浏览器网址输入栏输入的uri路径param参数，在发送请求时无Content-Type，故不能使用ShouldBind或
+Bind进行绑定。[搞不懂query查询参数发送请求的请求头并无Content-Type，用推断绑定却没事，应该是被gin认同为是
+ form表单；json数据也不见得有Content-Type，却也可以用推断绑定]。
+
+todo:
+ 总结：1、最好使用只针对特定数据类型的绑定方法，且写上相应tag标签。
+      2、如果和前端配合使用，不便确定前端发来json还是form还是其他时，则把可能的标签都写上，并使用推断绑定ShouldBind
+更多其他情况和详情，参见Github上https://github.com/gin-gonic/gin中的目录下举例
+
+
+---------------------------------------------------------------------------
+介绍：
+1、在1、2、3、4的绑定中用的是推断绑定ShouldBind
+2、在qi2ta1文件夹下的是采用的ShouldBindQuery、ShouldBindUri、ShouldBindJSON

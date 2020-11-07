@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+aa后台传来的数据是：{{.}}<br/><br/>
+bb开放处理允许自动识别：{{unsafe .}}<br/>
+开放处理允许自动识别：{{. | unsafe}}
+</body>
+</html>
+<!--
+aa后台传来的数据是：<a href='https://www.bilibili.com'>b站</a>
+
+bb开放处理允许自动识别：b站
+开放处理允许自动识别：b站
+-->

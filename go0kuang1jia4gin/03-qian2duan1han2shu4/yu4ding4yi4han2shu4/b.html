@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+以下是包含了字段、函数、切片的结构体的后台来的数据<br/>
+{{.Name}}今年{{.Age}}岁，<br/>
+{{call .Fun   "总是"}}<br/>  <!--Fun和Name、Age一样是字段，“总是”是传给函数的参数-->
+而且是{{ .Game }}好学生    <!--调用了不用传参的方法。结构体的方法名和字段的其实差不多-->
+<br/>
+{{range $k,$v:= .Qiepian}}
+    {{$k}}--{{.}},$v,{{$v}}<br/>  <!--可以仔细和运行后浏览器看到的页面对照-->
+{{end}}
+<br/>
+最后一个爱好是：{{index .Qiepian  2}}  <!--2是指取字段Qiepian下标为2的值，如果是切片元素是map，则传两个下标，空格隔开-->
+</body>
+</html>
+<!--
+以下是包含了字段、函数、切片的结构体的后台来的数据
+jack今年27岁，
+总是在努力学习
+而且是3好学生
+0--足球,$v,足球
+1--篮球,$v,篮球
+2--乒乓,$v,乒乓
+
+最后一个爱好是：乒乓
+-->

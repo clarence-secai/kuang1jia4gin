@@ -1,0 +1,9 @@
+session
+---------------------------------------------
+本身并不像cookie那样在官方文档中存在一个session，session这个东西是开发者
+人为编写的一个和浏览器上的cookie对接的、存放在服务端(服务器、文件、内存等)中的
+数据，通常以结构体的形式出现，以保存用户信息来辨别不同用户。
+具体可见网页书城项目中session的创建和作用
+go2web/wang3ye4shu1cheng2/200305liu-wangye-cookie0session/handler/handler.go:59
+
+todo:文件夹中是欧阳桫老师在视频里临时写的一个后来没用上的东西，可以不看。

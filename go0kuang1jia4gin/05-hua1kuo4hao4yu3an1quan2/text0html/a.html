@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text/template和html/template的区别</title>
+</head>
+<body>
+aa后台传来的数据是：{{.}}<br/><br/>
+<!--后台不传自定义函数而前端调用的，跑起来前端页面会报错；后台传自定义函数而前端不调用是可以的-->
+</body>
+</html>
+<!--
+aa后台传来的数据是：<script>alert(123);</script>
+aa后台传来的数据是：<a href='https://www.bilibili.com'>b站</a>
+-->

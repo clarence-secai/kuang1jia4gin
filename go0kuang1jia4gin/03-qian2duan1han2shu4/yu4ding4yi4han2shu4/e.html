@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台发来结构体</title>
+</head>
+<body>
+下面是and和or两个预定义函数：<br/>
+{{and .No1 .No2 }}<br/>
+{{or .No1 .No3 }}<br/>
+
+
+下面是eq ne lt le gt ge 等几个预定义函数<br/>
+{{if eq .No3 .No2}}
+结构体后两个数相等
+{{end}}
+{{if ne .No2 .No3}}
+结构体后两个数不相等
+{{end}}
+<br/>
+{{if lt .No1 .No2}}
+结构体的第一个数比第二个数小
+{{else}}
+结构体的第一个数不比第二个数小
+{{end}}
+
+</body>
+</html>

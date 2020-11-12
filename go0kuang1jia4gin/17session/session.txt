@@ -6,4 +6,4 @@ session
 具体可见网页书城项目中session的创建和作用
 go2web/wang3ye4shu1cheng2/200305liu-wangye-cookie0session/handler/handler.go:59
 
-todo:文件夹中是欧阳桫老师在视频里临时写的一个后来没用上的东西，可以不看。
+todo:文件夹中是没用上的东西，可以不看。
